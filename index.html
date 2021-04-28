@@ -16,8 +16,10 @@
     
     <div id="root">
 
-        <ul>
-            <li>{{ resultResponse }}</li>
+        <ul v-if=' emails.length == numeroEmail '>
+            
+            <li v-for='email in emails'> {{ email }} </li>
+
         </ul>
 
     </div>

@@ -2,25 +2,33 @@ var app = new Vue(
     {
         el: '#root',
         data: {
-            resultResponse: ''
+            emails:[ ],
+            numeroEmail: 10
         },
         methods: {
 
         },
         mounted () {
 
-            axios
+            for ( let i = 0; i < this.numeroEmail; i++ ) {
+
+                axios
                 .get( 'https://flynn.boolean.careers/exercises/api/random/mail' )
                 .then(( response ) => {
-                    console.log(response)
-
-                    const result = response.data;
-                    console.log( result )
-                    this.resultResponse = result.response;
-                    console.log( this.resultResponse )
-
-                });
                 
+                    const result = response.data;                
+                    console.log( result.response )
+
+                    this.emails.push(result.response)
+
+                    // un altro modo per far comparire tutto il blocco e non una riga alla volta
+                    // e quello di creare al inizio del for un array vuoto da popolare volta per 
+                    // volta con ogni elemento, quando questa array ha raggiunto la lunghezza
+                    // necessaria lo pusho tutto nel primo array fuori che scrivo nel html
+                });
+
+            }
+            
         }
     }
 )
